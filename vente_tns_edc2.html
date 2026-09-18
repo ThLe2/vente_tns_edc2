@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Étude de cas 2 — Martine Vasseur, gérante majoritaire en fin de carrière</title>
+<style>
+:root{--prune:#8C1E70;--prune-f:#5E1349;--prune-c:#F4E6EE;--gris:#3C3C3C;
+--vert:#1E7A4C;--vert-c:#E4F3EB;--rouge:#B3261E;--rouge-c:#FBE9E7;--bord:#E8DCE5;}
+*{box-sizing:border-box}
+body{margin:0;background:#FAF6F8;color:#1A1A1A;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.55;
+-webkit-user-select:none;-moz-user-select:none;user-select:none;}
+input,textarea{-webkit-user-select:text;-moz-user-select:text;user-select:text;}
+.wrap{max-width:920px;margin:0 auto;padding:18px 16px 60px}
+header.bandeau{background:var(--prune-f);color:#fff;padding:14px 16px;border-radius:8px 8px 0 0}
+header.bandeau .marque{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+header.bandeau h1{margin:4px 0 0;font-size:21px}
+header.bandeau .st{font-size:14px;opacity:.9;margin-top:2px}
+.carte{background:#fff;border:1px solid var(--bord);border-top:none;border-radius:0 0 8px 8px;padding:20px}
+.bloc{border:1px solid var(--bord);border-radius:8px;padding:16px;margin:0 0 18px;background:#fff}
+.bloc h2{margin:0 0 6px;font-size:17px;color:var(--prune-f)}
+.consigne{background:var(--prune-c);border-radius:6px;padding:10px 12px;margin:8px 0 14px;font-size:15px}
+.item{padding:12px 0;border-top:1px solid #F0E8EE}
+.item:first-of-type{border-top:none}
+.lb{font-weight:600;margin-bottom:8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:1px solid var(--bord);background:#fff;border-radius:20px;padding:7px 14px;font-size:15px;cursor:pointer;text-align:left}
+.opt:hover{border-color:var(--prune)}
+.opt.sel{background:var(--prune);border-color:var(--prune);color:#fff}
+.opts.col{flex-direction:column;align-items:stretch}
+.opts.col .opt{border-radius:8px}
+.opt[disabled]{cursor:default;opacity:.95}
+.opt.bonne{background:var(--vert-c);border-color:var(--vert);color:#14532d}
+.opt.mauvaise{background:var(--rouge-c);border-color:var(--rouge);color:#7f1d1d}
+.exp{margin-top:9px;font-size:14px;padding:9px 11px;border-radius:6px;border-left:3px solid var(--prune);background:#FBF5F9}
+.exp.ok{border-left-color:var(--vert);background:var(--vert-c)}
+.exp.ko{border-left-color:var(--rouge);background:var(--rouge-c)}
+.btn{background:var(--prune);color:#fff;border:none;border-radius:8px;padding:12px 22px;font-size:16px;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--prune-f)}
+.btn[disabled]{background:#C9BCC5;cursor:default}
+.btn.sec{background:#fff;color:var(--prune);border:1px solid var(--prune)}
+.err{color:var(--rouge);font-size:14px;margin-top:8px;min-height:18px}
+.champ{display:block;width:100%;padding:10px;border:1px solid var(--bord);border-radius:6px;font-size:16px;font-family:inherit}
+.grille{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.grille{grid-template-columns:1fr}}
+label.lbl{font-size:14px;color:var(--gris);display:block;margin-bottom:4px}
+.score{font-size:34px;font-weight:700;color:var(--prune-f)}
+.pill{display:inline-block;border-radius:20px;padding:3px 12px;font-size:13px;font-weight:600}
+.pill.ok{background:var(--vert-c);color:#14532d}
+.pill.ko{background:var(--rouge-c);color:#7f1d1d}
+table.bil{width:100%;border-collapse:collapse;margin-top:12px;font-size:15px}
+table.bil th{background:var(--prune-f);color:#fff;text-align:left;padding:8px 10px;font-weight:600}
+table.bil td{padding:8px 10px;border-bottom:1px solid var(--bord)}
+.pied{text-align:center;font-size:12px;color:var(--gris);margin-top:26px}
+.hide{display:none!important}
+.badge{float:right;font-size:13px;font-weight:600;color:var(--vert)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="bandeau">
+  <div class="marque">TMK Performances — Initiation ventes aux TNS</div>
+  <h1>Étude de cas 2 — Martine Vasseur, gérante majoritaire en fin de carrière</h1>
+  <div class="st">Modules 1 à 6 · note indicative /12 · un seul essai</div>
+</header><div class="carte" id="ecranId">
+  <p>Vous allez traiter un dossier complet, de la qualification du statut jusqu'à la conclusion. Vos réponses sont rédigées, puis transmises au formateur.</p>
+  <div class="consigne"><strong>Avant de commencer.</strong> Cette activité est notée et ne comporte
+  qu'un seul essai. Le copier-coller est désactivé. À la fin, téléchargez votre bilan et déposez-le
+  là où le formateur vous l'indique.</div>
+  <div class="grille">
+    <div><label class="lbl" for="nom">Nom</label><input class="champ" id="nom" autocomplete="off"></div>
+    <div><label class="lbl" for="prenom">Prénom</label><input class="champ" id="prenom" autocomplete="off"></div>
+  </div>
+  <div class="err" id="errId"></div>
+  <p style="margin-top:14px"><button class="btn" id="btnStart">Commencer</button></p>
+</div>
+<div class="carte hide" id="ecranCas">
+  <div class="bloc" id="zoneCtx"></div>
+  <div id="zoneQ"></div>
+  <div class="err" id="errQ"></div>
+  <p><button class="btn" id="btnRemise">Remettre ma copie</button></p>
+  <div id="zoneAuto"></div>
+  <div id="zoneBilan"></div>
+</div>
+<p class="pied">TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</p>
+</div>
+<script>
+
+['copy','cut','paste','contextmenu','dragstart'].forEach(function(e){
+  document.addEventListener(e,function(ev){ev.preventDefault();return false;});
+});
+document.addEventListener('keydown',function(e){
+  if((e.ctrlKey||e.metaKey)&&['c','x','v','u','s','p','a'].indexOf(e.key.toLowerCase())>-1){
+    if(e.target && e.target.tagName==='TEXTAREA' && ['c','x','v','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    e.preventDefault();return false;}
+});
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function telecharger(nom,html){
+  var b=new Blob([html],{type:'text/html;charset=utf-8'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=nom;
+  document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},600);
+}
+function bilanHTML(titre,lignes,entete){
+  var s='<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>'+esc(titre)+'</title>';
+  s+='<style>body{font-family:Arial,sans-serif;color:#1A1A1A;max-width:800px;margin:24px auto;padding:0 16px}';
+  s+='h1{color:#5E1349;font-size:20px;border-bottom:2px solid #8C1E70;padding-bottom:6px}';
+  s+='h2{color:#8C1E70;font-size:16px;margin-top:22px}table{width:100%;border-collapse:collapse;font-size:14px}';
+  s+='th{background:#5E1349;color:#fff;text-align:left;padding:6px 8px}td{padding:6px 8px;border-bottom:1px solid #E8DCE5;vertical-align:top}';
+  s+='.ok{color:#1E7A4C;font-weight:bold}.ko{color:#B3261E;font-weight:bold}';
+  s+='.pied{text-align:center;font-size:11px;color:#3C3C3C;margin-top:30px}</style></head><body>';
+  s+='<h1>'+esc(titre)+'</h1>'+entete+lignes;
+  s+='<p class="pied">TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</p></body></html>';
+  return s;
+}
+function normNom(s){return String(s||'').trim().replace(/[^A-Za-zÀ-ÿ0-9]+/g,'_').replace(/^_|_$/g,'');}
+
+var D={"ref": "vente-tns-edc2", "titre": "Étude de cas 2 — Martine Vasseur, gérante majoritaire en fin de carrière", "questions": [{"en": "Qualifiez le statut social de Martine Vasseur en justifiant votre raisonnement, puis indiquez ce qui aurait changé si elle n'avait détenu que 35 % des parts, son frère étant lui aussi gérant.", "aide": "Deux situations sont à traiter : la sienne, puis l'hypothèse. La seconde met en jeu une règle précise du module 1.", "criteres": [{"lb": "La qualification : gérante majoritaire, donc travailleuse non salariée", "mots": ["gerante majoritaire", "gerant majoritaire", "majoritaire", "travailleuse non salariee", "travailleur non salarie", "tns"]}, {"lb": "Ce qui la fonde : elle est gérante et détient plus de la moitié des parts", "mots": ["65", "plus de la moitie", "plus de 50", "majorite des parts", "moitie du capital", "detient la majorite"]}, {"lb": "L'hypothèse : avec deux cogérants, les parts s'additionnent (collège de gérance)", "mots": ["college", "s additionnent", "additionne", "cumul des parts", "ensemble des gerants", "les deux gerants", "cogerants", "cogerance", "100"]}]}, {"en": "Martine vous dit : « ma retraite, je ne m'en inquiète pas, j'ai cotisé toute ma vie ». Rédigez ce que vous lui répondez.", "aide": "Ne contredisez pas : expliquez le mécanisme, puis ce qui, dans son histoire à elle, pose problème. Terminez par ce que vous pouvez lui proposer.", "criteres": [{"lb": "Le mécanisme : une retraite de base et une retraite complémentaire", "mots": ["deux etages", "retraite de base", "complementaire", "trimestres", "points"]}, {"lb": "Le point faible : des droits assis sur un revenu qu'elle a volontairement contenu", "mots": ["assiette", "revenu declare", "revenu qu elle", "optimise", "pas se verser trop", "moins de cotisations", "moins de droits", "droits faibles", "pension faible", "arbitrage", "arbitre"]}, {"lb": "La solution : l'enveloppe retraite déductible, plan d'épargne retraite ou Madelin", "mots": ["plan d epargne retraite", "per", "madelin", "enveloppe retraite", "deductible", "deduction", "10 %", "epargne retraite"]}]}, {"en": "Comment abordez-vous son contrat de prévoyance de 2009 ? Rédigez les questions que vous posez et expliquez où vous voulez arriver.", "aide": "Attention à la manière : ce contrat est une décision qu'elle a prise elle-même.", "criteres": [{"lb": "Faire préciser : assureur, année, niveau de garantie, délai de carence, documents", "mots": ["chez qui", "quel niveau", "niveau de garantie", "carence", "documents", "quelle annee", "combien", "montant garanti", "voir le contrat", "les papiers", "classeur"]}, {"lb": "Le constat visé : elle est sous-couverte, pas non couverte (contrat jamais révisé)", "mots": ["sous couverte", "sous-couverte", "sous couvert", "perime", "depasse", "obsolete", "jamais revise", "plus a jour", "decale", "ne correspond plus", "2009"]}, {"lb": "Ne pas dénigrer le contrat ni le confrère : passer de « souscrire » à « mettre à jour »", "mots": ["mettre a jour", "mise a jour", "actualiser", "reviser", "ne pas denigrer", "sans denigrer", "pas critiquer", "ne pas critiquer", "ajuster"]}]}, {"en": "En fin d'entretien, Martine vous dit : « de toute façon je ne suis jamais malade ». Puis, quand vous avancez une proposition : « j'en parlerai à mon comptable ». Rédigez vos deux réponses et la façon dont vous terminez le rendez-vous.", "aide": "Deux objections de nature différente, et une conclusion à ne pas rater.", "criteres": [{"lb": "Première objection : lui donner raison, puis déplacer vers l'accident", "mots": ["accident", "la route", "le dos", "la main", "chute", "vous avez raison", "ne se prevoit pas", "personne ne prevoit"]}, {"lb": "Seconde objection : l'expert-comptable est un allié, proposer de lui transmettre les éléments", "mots": ["allie", "transmettre", "lui envoyer", "lui adresser", "avec lui", "ensemble", "elements a votre comptable", "je lui transmets", "je peux lui"]}, {"lb": "La conclusion : ne pas partir sans une date, un délai ou un engagement écrit", "mots": ["une date", "rendez vous le", "je vous rappelle le", "delai", "sans date", "prochain rendez vous", "on se revoit", "par ecrit", "je vous l ecris", "je note devant vous"]}]}], "total": 12, "mini": 280, "autoeval": ["J'ai su qualifier le statut du client et en tirer les conséquences.", "J'ai su conduire la découverte et chiffrer le manque.", "J'ai su construire un argument à partir de ce chiffre.", "J'ai su traiter les objections et conclure."]};
+
+var R={},S={},AE={},REMIS=false;
+function norm(t){return String(t).toLowerCase()
+  .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+  .replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();}
+document.getElementById('btnStart').onclick=function(){
+  var n=document.getElementById('nom').value.trim(),p=document.getElementById('prenom').value.trim();
+  if(!n||!p){document.getElementById('errId').textContent='Renseignez votre nom et votre prénom.';return;}
+  S.nom=n;S.prenom=p;
+  document.getElementById('ecranId').classList.add('hide');
+  document.getElementById('ecranCas').classList.remove('hide');
+  document.getElementById('zoneCtx').innerHTML=D.contexte;
+  rendre();
+};
+function rendre(){
+  var z=document.getElementById('zoneQ');z.innerHTML='';
+  D.questions.forEach(function(q,qi){
+    var d=document.createElement('div');d.className='bloc';
+    d.innerHTML='<h2>Question '+(qi+1)+' <span style="font-weight:400;color:#8A7A85;font-size:14px">('
+      +q.criteres.length+' points)</span></h2>'
+      +'<div class="lb">'+esc(q.en)+'</div>'
+      +(q.aide?'<div class="consigne">'+q.aide+'</div>':'')
+      +'<textarea class="champ" id="ta'+qi+'" rows="7" placeholder="Rédigez votre réponse ici."></textarea>'
+      +'<div style="font-size:13px;color:#8A7A85;margin-top:4px" id="cpt'+qi+'"></div>'
+      +'<div class="exp hide" id="ex'+qi+'"></div>';
+    z.appendChild(d);
+    var ta=d.querySelector('textarea');
+    ta.addEventListener('input',function(){
+      document.getElementById('cpt'+qi).textContent=ta.value.trim().length+' caractères (minimum '+D.mini+')';
+    });
+    document.getElementById('cpt'+qi).textContent='0 caractères (minimum '+D.mini+')';
+  });
+}
+document.getElementById('btnRemise').onclick=function(){
+  if(REMIS)return;
+  var manque=[];
+  D.questions.forEach(function(q,qi){
+    var v=document.getElementById('ta'+qi).value.trim();
+    if(v.length<D.mini)manque.push(qi+1);else R[qi]=v;
+  });
+  if(manque.length){document.getElementById('errQ').textContent=
+    'Développez davantage vos réponses avant de remettre (questions '+manque.join(', ')+').';return;}
+  if(!confirm('Vous allez remettre votre copie. Vous ne pourrez plus la modifier. Confirmez-vous ?'))return;
+  if(!confirm('Confirmation définitive : remettre la copie ?'))return;
+  document.getElementById('errQ').textContent='';REMIS=true;
+  this.disabled=true;this.textContent='Copie remise';
+  D.questions.forEach(function(q,qi){document.getElementById('ta'+qi).readOnly=true;});
+  autoeval();
+};
+function autoeval(){
+  var h='<div class="bloc"><h2>Auto-évaluation</h2>'
+    +'<div class="consigne">Avant de découvrir votre bilan, situez-vous sur ces quatre points. '
+    +'Vos réponses sont transmises au formateur et ne sont pas notées.</div>';
+  D.autoeval.forEach(function(t,i){
+    h+='<div class="item"><div class="lb">'+esc(t)+'</div><div class="opts" id="ae'+i+'">';
+    ['Pas du tout','Plutôt non','Plutôt oui','Tout à fait'].forEach(function(o,oi){
+      h+='<button class="opt" data-a="'+i+'" data-o="'+oi+'">'+o+'</button>';});
+    h+='</div></div>';
+  });
+  h+='<div class="item"><div class="lb">Ce qui vous a le plus manqué sur ce dossier (facultatif)</div>'
+    +'<textarea class="champ" id="aeCom" rows="3"></textarea></div>'
+    +'<div class="err" id="errAE"></div>'
+    +'<p><button class="btn" id="btnAE">Valider et voir mon bilan</button></p></div>';
+  var z=document.getElementById('zoneAuto');z.innerHTML=h;
+  z.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){
+    var i=b.dataset.a;
+    document.querySelectorAll('#ae'+i+' .opt').forEach(function(x){x.classList.remove('sel');});
+    b.classList.add('sel');AE[i]=parseInt(b.dataset.o,10);};});
+  document.getElementById('btnAE').onclick=function(){
+    var m=[];D.autoeval.forEach(function(t,i){if(AE[i]===undefined)m.push(i+1);});
+    if(m.length){document.getElementById('errAE').textContent='Répondez aux quatre points.';return;}
+    AE.com=document.getElementById('aeCom').value.trim();
+    this.disabled=true;this.textContent='Auto-évaluation transmise';
+    document.querySelectorAll('#zoneAuto .opt').forEach(function(x){x.disabled=true;});
+    document.getElementById('aeCom').readOnly=true;
+    corriger();
+  };
+  z.scrollIntoView({behavior:'smooth'});
+}
+function corriger(){
+  var obt=0,detail='',lignes='';
+  D.questions.forEach(function(q,qi){
+    var t=norm(R[qi]),sq=0,li='';
+    q.criteres.forEach(function(c){
+      var trouve=c.mots.some(function(m){return t.indexOf(norm(m))>-1;});
+      if(trouve)sq++;
+      li+='<li style="color:'+(trouve?'#14532d':'#7f1d1d')+'">'+esc(c.lb)
+        +' — '+(trouve?'repéré':'non repéré')+'</li>';
+    });
+    obt+=sq;
+    var e=document.getElementById('ex'+qi);
+    e.className='exp '+(sq===q.criteres.length?'ok':'ko');
+    e.innerHTML='<strong>'+sq+' / '+q.criteres.length+'</strong><ul style="margin:6px 0 0 18px">'+li+'</ul>';
+    e.classList.remove('hide');
+    lignes+='<tr><td>Question '+(qi+1)+'</td><td>'+sq+' / '+q.criteres.length+'</td></tr>';
+    detail+='<h2>Question '+(qi+1)+'</h2><p><i>'+esc(q.en)+'</i></p>'
+      +'<p style="white-space:pre-wrap;border-left:3px solid #8C1E70;padding-left:10px">'+esc(R[qi])+'</p>'
+      +'<ul>'+li.replace(/style="color:[^"]*"/g,'')+'</ul>';
+  });
+  var pct=Math.round(obt/D.total*100);
+  var z=document.getElementById('zoneBilan');
+  z.innerHTML='<div class="bloc"><h2>Note indicative</h2>'
+    +'<p class="score">'+obt+' / '+D.total+'</p>'
+    +'<div class="consigne"><strong>Cette note est indicative.</strong> Elle est calculée par détection '
+    +'automatique des points attendus dans votre rédaction : elle repère des notions, elle ne juge pas la '
+    +'qualité de votre argumentation. <strong>La note définitive est arrêtée par le formateur</strong> '
+    +'après lecture de votre copie.</div>'
+    +'<table class="bil"><tr><th>Question</th><th>Points repérés</th></tr>'+lignes+'</table>'
+    +'<p style="margin-top:16px"><button class="btn" id="btnDl">Télécharger ma copie et mon bilan</button></p>'
+    +'<p style="font-size:14px;color:#3C3C3C">Déposez ce fichier là où le formateur vous l\'indique.</p></div>';
+  document.getElementById('btnDl').onclick=function(){
+    var lib=['Pas du tout','Plutôt non','Plutôt oui','Tout à fait'],ae='<h2>Auto-évaluation</h2><table>';
+    D.autoeval.forEach(function(t,i){ae+='<tr><td>'+esc(t)+'</td><td>'+lib[AE[i]]+'</td></tr>';});
+    ae+='</table>'+(AE.com?'<p><i>'+esc(AE.com)+'</i></p>':'');
+    var ent='<p><strong>'+esc(S.nom.toUpperCase())+' '+esc(S.prenom)+'</strong><br>'
+      +esc(D.titre)+'<br>Note indicative : <strong>'+obt+' / '+D.total+'</strong> ('+pct+' %)'
+      +' — note définitive arrêtée par le formateur<br>Remis le '+new Date().toLocaleString('fr-FR')+'</p>';
+    telecharger('copie_'+D.ref+'_'+normNom(S.nom)+'_'+normNom(S.prenom)+'.html',
+      bilanHTML('Copie — '+D.titre,
+        '<h2>Synthèse</h2><table><tr><th>Question</th><th>Points repérés</th></tr>'+lignes+'</table>'
+        +detail+ae, ent));
+  };
+  z.scrollIntoView({behavior:'smooth'});
+}
+
+</script>
+</body>
+</html>
